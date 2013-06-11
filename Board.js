@@ -21,3 +21,19 @@ Board.prototype.GetEmptySlots = function () {
     }
     return result;
 };
+
+Board.prototype.__getIndexBy = function(index, direction){
+    if(direction === "N")
+        return index[0] === "A" ? null : index[0] == "B" ? "A"+index[1] : index[0] == "C" ? "B"+index[1] : null; 
+    
+    if(direction === "E")
+        return index[1] === "3" ? null : index[1] == "2" ? index[0]+"3" : index[1] == "1" ? index[0]+"2": null;
+    
+    if(direction === "S")
+        return index[0] === "C" ? null : index[0] == "B" ? "C"+index[1] : index[0] == "A" ? "B"+index[1]: null;
+    
+    if(direction === "W")
+        return index[1] === "1" ? null : index[1] == "2" ? index[0]+"1" : index[1] == "3" ? index[0]+"2": null;
+    
+    return null;
+};

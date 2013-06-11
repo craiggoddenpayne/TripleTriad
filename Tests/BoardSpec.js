@@ -103,4 +103,38 @@ describe("Board", function () {
 
 	});
 
+	describe("__getIndexBy", function(){
+		var board;
+		beforeEach(function () {
+            board = new Board();
+        });
+
+        it("should get correct Index for A1", function(){
+        	expect(board.__getIndexBy("A1", "N")).toEqual(null);
+         	expect(board.__getIndexBy("A1", "E")).toEqual("A2");
+         	expect(board.__getIndexBy("A1", "S")).toEqual("B1");
+         	expect(board.__getIndexBy("A1", "W")).toEqual(null);
+        });
+
+        it("should get correct Index for A2", function(){
+        	expect(board.__getIndexBy("A2", "N")).toEqual(null);
+         	expect(board.__getIndexBy("A2", "E")).toEqual("A3");
+         	expect(board.__getIndexBy("A2", "S")).toEqual("B2");
+         	expect(board.__getIndexBy("A2", "W")).toEqual("A1");
+        });
+
+        it("should get correct Index for A3", function(){
+        	expect(board.__getIndexBy("A3", "N")).toEqual(null);
+         	expect(board.__getIndexBy("A3", "E")).toEqual(null);
+         	expect(board.__getIndexBy("A3", "S")).toEqual("B3");
+         	expect(board.__getIndexBy("A3", "W")).toEqual("A2");
+        });
+
+        it("should get correct Index for B1", function(){
+        	expect(board.__getIndexBy("B1", "N")).toEqual("A1");
+         	expect(board.__getIndexBy("B1", "E")).toEqual("B2");
+         	expect(board.__getIndexBy("B1", "S")).toEqual("C1");
+         	expect(board.__getIndexBy("B1", "W")).toEqual(null);
+        });
+	});
 });
