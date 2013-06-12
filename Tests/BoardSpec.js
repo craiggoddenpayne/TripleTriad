@@ -136,5 +136,96 @@ describe("Board", function () {
          	expect(board.__getIndexBy("B1", "S")).toEqual("C1");
          	expect(board.__getIndexBy("B1", "W")).toEqual(null);
         });
+
+        it("should get correct Index for B2", function(){
+        	expect(board.__getIndexBy("B2", "N")).toEqual("A2");
+         	expect(board.__getIndexBy("B2", "E")).toEqual("B3");
+         	expect(board.__getIndexBy("B2", "S")).toEqual("C2");
+         	expect(board.__getIndexBy("B2", "W")).toEqual("B1");
+        });
+
+        it("should get correct Index for B3", function(){
+        	expect(board.__getIndexBy("B3", "N")).toEqual("A3");
+         	expect(board.__getIndexBy("B3", "E")).toEqual(null);
+         	expect(board.__getIndexBy("B3", "S")).toEqual("C3");
+         	expect(board.__getIndexBy("B3", "W")).toEqual("B2");
+        });
+
+        it("should get correct Index for C1", function(){
+        	expect(board.__getIndexBy("C1", "N")).toEqual("B1");
+         	expect(board.__getIndexBy("C1", "E")).toEqual("C2");
+         	expect(board.__getIndexBy("C1", "S")).toEqual(null);
+         	expect(board.__getIndexBy("C1", "W")).toEqual(null);
+        });
+
+        it("should get correct Index for C2", function(){
+        	expect(board.__getIndexBy("C2", "N")).toEqual("B2");
+         	expect(board.__getIndexBy("C2", "E")).toEqual("C3");
+         	expect(board.__getIndexBy("C2", "S")).toEqual(null);
+         	expect(board.__getIndexBy("C2", "W")).toEqual("C1");
+        });
+
+        it("should get correct Index for B3", function(){
+        	expect(board.__getIndexBy("C3", "N")).toEqual("B3");
+         	expect(board.__getIndexBy("C3", "E")).toEqual(null);
+         	expect(board.__getIndexBy("C3", "S")).toEqual(null);
+         	expect(board.__getIndexBy("C3", "W")).toEqual("C2");
+        });
+	});
+
+	describe("CanPlaceCard", function(){
+		var board;
+		beforeEach(function () {
+            board = new Board();
+            board.__cards[3].value = {};    
+        });
+
+		it("should return true for empty slot", function(){
+			expect(board.CanPlaceCard("A1")).toEqual(true);
+		});
+
+		it("should return false for none empty slot", function(){
+			expect(board.CanPlaceCard("A2")).toEqual(false);
+		});
+	});
+
+	describe("PlaceCard", function(){
+
+		describe("and CanPlaceCard is false", function(){
+			var board;
+			var result;
+			beforeEach(function () {
+	            board = new Board();
+	            spyOn(board, "CanPlaceCard").andCallFake(function(){return false;});
+	            result = board.PlaceCard();    
+	        });
+
+			it("should check if CanPlaceCard", function(){
+				expect(board.CanPlaceCard).toHaveBeenCalled();
+			});
+
+			it("should return false", function(){
+				expect(result).toEqual(false);
+			});
+		});
+
+		describe("and CanPlaceCard is true", function(){
+			var board;
+			var result;
+			beforeEach(function () {
+	            board = new Board();
+	            spyOn(board, "CanPlaceCard").andCallFake(function(){return true;});
+	            result = board.PlaceCard();    
+	        });
+
+			it("should check if CanPlaceCard", function(){
+				expect(board.CanPlaceCard).toHaveBeenCalled();
+			});
+
+			it("should return true", function(){
+				expect(result).toEqual(true);
+			});
+		});
+
 	});
 });

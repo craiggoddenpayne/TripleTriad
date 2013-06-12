@@ -35,5 +35,135 @@ Board.prototype.__getIndexBy = function(index, direction){
     if(direction === "W")
         return index[1] === "1" ? null : index[1] == "2" ? index[0]+"1" : index[1] == "3" ? index[0]+"2": null;
     
-    return null;
+    return undefined;
 };
+
+Board.prototype.CanPlaceCard = function(index){
+    if(index === undefined)
+        return false;
+
+    var emptySlots = this.GetEmptySlots();
+    for(var i=0; i < emptySlots.length; i++){
+        if(index === emptySlots[i]){
+            return true;
+        }
+    }
+    return false;
+};
+
+Board.prototype.PlaceCard = function(card, index){
+    if(this.CanPlaceCard(index)){
+        this.__setCard(index,card);
+        var northIndex = this.__getIndexBy(index, "N");
+        if(this.CanPlaceCard(northIndex)){
+            this.__flipIfNeeded(northIndex, card, "N");
+        }
+        var eastIndex = this.__getIndexBy(index, "E");
+        if(this.CanPlaceCard(eastIndex)){
+            this.__flipIfNeeded(eastIndex, card, "E");
+        }
+        var southIndex = this.__getIndexBy(index, "S");
+        if(this.CanPlaceCard(southIndex)){
+            this.__flipIfNeeded(southIndex, card, "S");
+        }
+        var westIndex = this.__getIndexBy(index, "W");
+        if(this.CanPlaceCard(westIndex)){
+           this.__flipIfNeeded(westIndex, card, "W");
+        }
+        return true;
+    }
+    return false;
+};
+
+Board.prototype.__setCard = function(index, card){
+    this.__cards.first(function(x){ return x.key === index}).value = card;
+};
+
+Board.prototype.__flipIfNeeded = function(index, card, direction){
+    if(direction === "N"){
+        //placed card is to south
+        var opponentIndex = this.__getIndexBy(index, "N");
+        if(card.attributes.north > this.GetByIndex(opponentIndex).attributes.south){
+            this.GetByIndex(opponentIndex).SwapPlayer();
+        }
+    }
+    if(direction === "E"){
+        //placed card is to west
+        var opponentIndex = this.__getIndexBy(index, "E");
+        if(card.attributes.east > this.GetByIndex(opponentIndex).attributes.west){
+            this.GetByIndex(opponentIndex).SwapPlayer();
+        }
+    }
+    if(direction === "S"){
+        //placed card is to north
+        var opponentIndex = this.__getIndexBy(index, "S");
+        if(card.attributes.south > this.GetByIndex(opponentIndex).attributes.north){
+            this.GetByIndex(opponentIndex).SwapPlayer();
+        }
+    }
+    if(direction === "W"){
+        //placed card is to east
+            var opponentIndex = this.__getIndexBy(index, "W");
+        if(card.attributes.west > this.GetByIndex(opponentIndex).attributes.east){
+            this.GetByIndex(opponentIndex).SwapPlayer();
+        }
+    } 
+};
+
+Board.prototype.GetScore = function(){
+    var player1 = 0;
+    var player2 = 0;
+    for(var i = 0; i < this.ValidIndexes.length; i++){
+        var card = this.GetByIndex(this.ValidIndexes[i])
+        if(card.value !== null){
+            if(card.playerId === 1)
+                player1++;
+            else if(card.playerId === 2)
+                player2++;
+        }    
+    }
+    
+    return {
+        player1 : player1,
+        player2 : player2
+    };
+};
+
+
+function Card(id, name, description){
+    this.__id = id;
+    this.__name = name;
+    this.__description = description;
+    this.__uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+        return v.toString(16);
+    });
+    this.__player = 0;
+};
+
+Card.prototype.__id= null;
+Card.prototype.__name= null;
+Card.prototype.__description= null;
+Card.prototype.__player= null;
+Card.prototype.__uuid = null;
+Card.prototype.__attributes = { north:0, south:0, east:0, west:0};
+Card.prototype.SwapPlayer = function(){
+    if(this.__player == 1){
+        this.__player = 2;
+    } else if(this.__player == 2){
+        this.__player = 1;
+    }
+    return this.__player;
+};
+
+Card.prototype.SetPlayer = function(playerId){
+    this.__player = playerId;
+};
+
+
+function CardSet(cards, player){
+    this.__cards = card;
+    this.__player = player;
+};
+CardSet.prototype.__cards = [];
+CardSet.prototype.__player = 0;

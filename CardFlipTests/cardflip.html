@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class=" js csstransforms3d" lang="en"><head>
+  <title>Card Flip</title>
+    <style media="screen" type="text/css">
+    .container {
+      width: 100px;
+      height: 160px;
+      position: relative;
+      margin: 0px;
+      -webkit-perspective: 800px; -moz-perspective: 800px; -o-perspective: 800px; perspective: 800px;
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      margin: 0px;
+      display:block;
+      -webkit-transition: -webkit-transform 0.5s; -moz-transition: -moz-transform 0.5s; -o-transition: -o-transform 0.5s; transition: transform 0.5s;
+      -webkit-transform-style: preserve-3d; -moz-transform-style: preserve-3d; -o-transform-style: preserve-3d; transform-style: preserve-3d;
+    }
+
+    .flipped {
+      -webkit-transform: rotateY( 180deg ); -moz-transform: rotateY( 180deg ); -o-transform: rotateY( 180deg ); transform: rotateY( 180deg );
+    }
+
+    .card div {
+      display:block;
+      margin: 0px;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -o-backface-visibility: hidden; backface-visibility: hidden;
+    }
+
+    .cardfront {
+      margin: 0px;
+      background-image: url(CardTemplate1.jpg);
+      background-size: 100%;
+    }
+
+    .cardback {
+      margin: 0px;
+      background-size: 100%;
+      background-image: url(rgeezard.jpg);      
+      webkit-transform: rotateY( 180deg ); -moz-transform: rotateY( 180deg ); -o-transform: rotateY( 180deg ); transform: rotateY( 180deg );
+    }
+
+    .A1{
+
+    }
+  </style>
+  <script src="cardflip.js"></script>
+
+</head>
+<body>
+
+  <h1>Card Flip</h1>
+
+  <section class="container">
+    <div>
+      <div class="card A1">
+        <div class="cardfront"></div>
+        <div class="cardback"></div>
+      </div>
+      <div class="card B1">
+        <div class="cardfront"></div>
+        <div class="cardback"></div>
+      </div>
+      <div class="card C1">
+        <div class="cardfront"></div>
+        <div class="cardback"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="options">
+    <p><button id="flip">Flip Card</button></p>
+  </section>
+</body>
+</html>
