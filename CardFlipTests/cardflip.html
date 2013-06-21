@@ -1,88 +1,13 @@
 <!DOCTYPE html>
 <html class=" js csstransforms3d" lang="en"><head>
   <title>Card Flip</title>
-    <style media="screen" type="text/css">
-      .boardcontainer {
-        width: 360px;
-        height: 500px;
-        position: relative;
-        margin: 0px;
-      }
-
-    .boardrow{
-      height:33%;
-    }
-
-    .cardSet1{
-      height: 500px;
-      margin: 0;
-      position: relative;
-      width: 120px;
-    }
-    div.card1,div.card2,div.card3,div.card4,div.card5{
-      width: 32%;
-      height: 32%;
-      display: inline-block;
-    }
-
-    div.A1, div.B1, div.C1,div.A2, div.B2, div.C2,div.A3, div.B3, div.C3 {
-      width: 32%;
-      height: 32%;
-      display: inline-block;
-    }
-
-    .card {
-      width: 33%;
-      height: 33%;
-      position: absolute;
-      margin: 0px;
-      display:block;
-      -webkit-transition: -webkit-transform 0.5s; -moz-transition: -moz-transform 0.5s; -o-transition: -o-transform 0.5s; transition: transform 0.5s;
-      -webkit-transform-style: preserve-3d; -moz-transform-style: preserve-3d; -o-transform-style: preserve-3d; transform-style: preserve-3d;
-    }
-
-    .flipped {
-      -webkit-transform: rotateY( 180deg ); -moz-transform: rotateY( 180deg ); -o-transform: rotateY( 180deg ); transform: rotateY( 180deg );
-    }
-
-    .card div {
-      display:block;
-      margin: 0px;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -o-backface-visibility: hidden; backface-visibility: hidden;
-    }
-
-    .cardfront {
-      background-size: cover; -webkit-background-size: cover;  -moz-background-size: cover; -o-background-size: cover; 
-      margin: 0px;
-      background-image: url(CardTemplate1.jpg);
-      
-    }
-
-    .cardback {
-      background-size: cover; -webkit-background-size: cover;  -moz-background-size: cover; -o-background-size: cover; 
-      margin: 0px;
-      background-image: url(rgeezard.jpg);      
-      webkit-transform: rotateY( 180deg ); -moz-transform: rotateY( 180deg ); -o-transform: rotateY( 180deg ); transform: rotateY( 180deg );
-    }
-  </style>
-  <script src="cardflip.js"></script>
-
+    <link rel="stylesheet" href="style.css" />
+    <script src="cardflip.js"></script>
 </head>
 <body>
 
   <h1>Card Flip</h1>
 
-
-  <div class="cardSet1">
-    <div class="card card1"></div>
-    <div class="card card2"></div>
-    <div class="card card3"></div>
-    <div class="card card4"></div>
-    <div class="card card5"></div>
-  </div>
 
   <div class="boardcontainer">
       <div class="boardrow">
@@ -147,12 +72,6 @@
         </div>
       </div>
     </div>
-
   </div>
-
-  <section id="options">
-    <p><button id="flip">Flip Card</button></p>
-  </section>
-
 </body>
 </html>

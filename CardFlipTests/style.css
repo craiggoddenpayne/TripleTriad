@@ -1,0 +1,66 @@
+ .boardcontainer {
+        width: 360px;
+        height: 500px;
+        position: relative;
+        margin: 0px;
+      }
+
+    .boardrow{
+      height:33%;
+    }
+
+    .cardSet1{
+      height: 500px;
+      margin: 0;
+      position: relative;
+      width: 120px;
+    }
+    div.card1,div.card2,div.card3,div.card4,div.card5{
+      width: 35%;
+      height: 32%;
+      display: inline-block;
+    }
+
+    div.A1, div.B1, div.C1,div.A2, div.B2, div.C2,div.A3, div.B3, div.C3 {
+      width: 32%;
+      height: 100%;
+      display: inline-block;
+      background-color:sandybrown;
+    }
+
+    .card {
+      width: 33%;
+      height: 33%;
+      position: absolute;
+      margin: 0px;
+      display:block;
+      -webkit-transition: -webkit-transform 0.5s; -moz-transition: -moz-transform 0.5s; -o-transition: -o-transform 0.5s; transition: transform 0.5s;
+      -webkit-transform-style: preserve-3d; -moz-transform-style: preserve-3d; -o-transform-style: preserve-3d; transform-style: preserve-3d;
+    }
+
+    .flipped {
+      -webkit-transform: rotateY( 180deg ); -moz-transform: rotateY( 180deg ); -o-transform: rotateY( 180deg ); transform: rotateY( 180deg );
+    }
+
+    .card div {
+      display:block;
+      margin: 0px;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      -webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -o-backface-visibility: hidden; backface-visibility: hidden;
+    }
+
+    .cardfront {
+      background-size: cover; -webkit-background-size: cover;  -moz-background-size: cover; -o-background-size: cover; 
+      margin: 0px;
+      background-image: url(CardTemplate1.jpg);
+      
+    }
+
+    .cardback {
+      background-size: cover; -webkit-background-size: cover;  -moz-background-size: cover; -o-background-size: cover; 
+      margin: 0px;
+      background-image: url(rgeezard.jpg);      
+      webkit-transform: rotateY( 180deg ); -moz-transform: rotateY( 180deg ); -o-transform: rotateY( 180deg ); transform: rotateY( 180deg );
+    }

@@ -1,10 +1,12 @@
 var init = function() {
   var cards = document.getElementsByClassName('card');
-  document.getElementById('flip').addEventListener( 'click', function(){
-    for(var i=0; i < cards.length; i++){
-      cards[i].toggleClassName('flipped');  
+  //document.getElementById('flip').addEventListener( 'click', function(){
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].addEventListener( 'click', function(){
+            this.toggleClassName('flipped');  
+          
+        }, false);
     }
-  }, false);
 };
 
 window.addEventListener('DOMContentLoaded', init, false);
